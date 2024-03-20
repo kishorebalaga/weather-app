@@ -7,6 +7,7 @@ module.exports = {
         clear: "url('../public/assets/clear.jpg')",
         haze: "url('../public/assets/haze.jpg')",
         clouds: "url('../public/assets/clouds.jpg')",
+        fog: "url('../public/assets/clouds.jpg')",
       },
     },
   },

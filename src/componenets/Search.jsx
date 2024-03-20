@@ -6,7 +6,7 @@ const Search = () =>{
 
     const [loc,setLoc] = useState('Singapore');
     const [resp,setResp] = useState({})
-    const [image,setImg] = useState("haze")
+    const [image,setImg] = useState("haze");
 
     const onChangeInput = (e) => {
         setLoc(e.target.value)
@@ -19,10 +19,9 @@ const Search = () =>{
                 return true // default
               }},).then((response) => {
                 setResp(response.data)
-                
-                if(typeof response.data.weather[0] !== undefined){
-                    console.log("entering here ==>")
-                    if(response.data.weather[0].main.toLowerCase() === "haze" || "clouds"){           
+                debugger;
+                if(response.status === 200){
+                    if(response.data.weather[0].main.toLowerCase() === "haze" || "clouds" || "clear" || "fog"){          
                         setImg(response.data.weather[0].main.toLowerCase())
                 }
                 
@@ -34,11 +33,8 @@ const Search = () =>{
         }
     }
 
-    console.log("image ==>",image)
-
-
     return(
-    <div className={`bg-cover bg-center bg-${image} h-full`}>
+    <div className={`bg-cover bg-center h-full`} style={{backgroundImage:`url(./assets/${image}.jpg)`}}>
         <div className="flex flex-col w-full h-full backdrop-brightness-50 pt-4">
             <div className='h-17 flex flex-row justify-center mb-20'>
                 <input type="text" className="bg-transparent border-solid border-[1px] border-white rounded-full h-15 w-60 p-3 placeholder-shown:text-xl text-white" placeholder="Enter Location"
@@ -71,11 +67,8 @@ const Search = () =>{
                             </div>
                             </div>
                         </div>)
-
             }
             
-            
-
          </div>
      </div>
     )
